@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var url = require('url');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -14,8 +15,12 @@ app.get('/', function(request, response) {
 });
 
 app.get('/*', function(request, response) {
-  response.render('pages/index2', {Check: window.location.pathname })
-  console.log(window.location.pathname)
+  const test = ({
+      protocol: request.protocol,
+      path: request.path
+  });
+
+  response.render('pages/index2', {Check: test.path })
 });
 
 app.listen(app.get('port'), function() {
