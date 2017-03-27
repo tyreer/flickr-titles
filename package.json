@@ -1,0 +1,16 @@
+{
+  "name": "flickr-api-app",
+  "version": "1.0.0",
+  "description": "This is a JavaScript app orginally created as a class assignment in Hack University's Summer 2016 JavaScript Foundations class.",
+  "main": "flickrApp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Robert Tyree",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "2.5.6",
+    "express": "^4.15.2"
+  }
+}

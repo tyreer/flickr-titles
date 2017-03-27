@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/header.ejs %>
+  </head>
+  <body>
+    <div class="container">
+      <header id="header" class = "header">
+        <div class = "main-title-text">
+          <h1>Flickr Titles</h1>
+          <input type="text" id="query" value="">
+          <button id="getdata">Search</button>
+          <h2>100 most recently uploaded photos<br>File titles overlaid</h2>
+        </div>
+      </header>
+       <a id="top" class="top-jump" href=#header>
+          <div>
+            <h2>top</h2>
+          </div>
+        </a>
+      <div id="results">
+      </div>
+    </div>
+    <script src="../../flickrApp.js" type="text/javascript"></script>
+  </body>
+</html>
