@@ -10,6 +10,7 @@
   "author": "Robert Tyree",
   "license": "MIT",
   "dependencies": {
+    "aws-sdk": "^2.32.0",
     "ejs": "2.5.6",
     "express": "^4.15.2"
   }

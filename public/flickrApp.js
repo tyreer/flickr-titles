@@ -14,11 +14,12 @@ document.getElementById("query").addEventListener("keyup", function (e) {
     })
 
 var resultsArray = [];
+// console.log(<%= APIKey %>)
 
 function makeAJAXRequest () {
 
     var request = new XMLHttpRequest();
-    var url = "//api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+process.env.APIKEY+"&format=json&nojsoncallback=?&text=";
+    var url = "//api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+APIKEY+"&format=json&nojsoncallback=?&text=";
 
     request.addEventListener("load", writeResponse);
 
