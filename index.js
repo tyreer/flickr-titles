@@ -14,8 +14,8 @@ app.get('/', function(request, response) {
 });
 
 app.get('/*', function(request, response) {
-  response.render('pages/index2', {Check: document.URL })
-  console.log(document.URL)
+  response.render('pages/index2', {Check: window.location.pathname })
+  console.log(window.location.pathname)
 });
 
 app.listen(app.get('port'), function() {
