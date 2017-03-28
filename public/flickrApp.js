@@ -1,10 +1,10 @@
 'use strict'
 
-document.getElementById("getdata").addEventListener("click", makeAJAXRequest);
-document.getElementById("getdata").addEventListener("click", jumpDownTimer);
-document.getElementById("getdata").addEventListener("click", showTop);
-document.getElementById("getdata").addEventListener("click", eraseQuery);
-document.getElementById("top").addEventListener("click", hideTop);
+// document.getElementById("getdata").addEventListener("click", jumpDownTimer);
+// document.getElementById("getdata").addEventListener("click", showTop);
+// document.getElementById("getdata").addEventListener("click", eraseQuery);
+// document.getElementById("top").addEventListener("click", hideTop);
+document.getElementById("getdata").addEventListener("click", triggerQueryRoute);
 
 //Add event listener for enter key
 document.getElementById("query").addEventListener("keyup", function (e) {
@@ -14,35 +14,9 @@ document.getElementById("query").addEventListener("keyup", function (e) {
     })
 
 var resultsArray = [];
-// console.log(<%= APIKey %>)
 
-function makeAJAXRequest () {
-
-    var request = new XMLHttpRequest();
-    var url = "//api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+APIKEY+"&format=json&nojsoncallback=?&text=";
-
-    request.addEventListener("load", writeResponse);
-
-    request.open("GET", url + document.getElementById("query").value);
-    request.send();
-}
-
-function writeResponse() {
-    resultsArray = JSON.parse(this.responseText);
-    var htmlString = "";
-
-    for (var i = 0; i < resultsArray.photos.photo.length; i++) {
-        var titleText = resultsArray.photos.photo[i].title.substring(0,133);
-        htmlString += "<div class='photo-container'> <div class='photo'> <img id='outer" + i + "' src = https://farm" + resultsArray.photos.photo[i].farm + ".staticflickr.com/" + resultsArray.photos.photo[i].server + "/" + resultsArray.photos.photo[i].id + "_" + resultsArray.photos.photo[i].secret +".jpg> <div id='" + i + "' class='title_overlay'> <p>" + titleText + "</p> </div> </div> </div>"
-    }
-
-    document.getElementById("results").innerHTML = htmlString;
-
-     for (var j = 0; j < resultsArray.photos.photo.length; j++) {
-        // document.getElementById(j).addEventListener("click", makeAJAX2Request);
-        document.getElementById(j).addEventListener("click", toggleOverlayOff);
-        document.getElementById("outer"+j).addEventListener("click", toggleOverlayOn);
-    }
+function triggerQueryRoute(){
+  window.location.href = window.location.href + document.getElementById("query").value;
 }
 
 function toggleOverlayOff(){
@@ -63,9 +37,9 @@ function toggleOverlayOn(){
     document.getElementById(divId).className = 'title_overlay';
 }
 
-function jumpDownTimer(){
-   let timeoutID = window.setTimeout(jumpDown, 800);
-}
+// function jumpDownTimer(){
+//    let timeoutID = window.setTimeout(jumpDown, 800);
+// }
 
 function jumpDown(){
     window.scroll(0, 600);

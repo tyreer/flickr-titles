@@ -21,6 +21,34 @@ app.get('/*', function(request, response) {
   });
 
   response.render('pages/index2', {Check: test.path })
+  // function makeAJAXRequest () {
+  //
+  //     var request = new XMLHttpRequest();
+  //     var url = "//api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+APIKEY+"&format=json&nojsoncallback=?&text=";
+  //
+  //     request.addEventListener("load", writeResponse);
+  //
+  //     request.open("GET", url + document.getElementById("query").value);
+  //     request.send();
+  // }
+  //
+  // function writeResponse() {
+  //     resultsArray = JSON.parse(this.responseText);
+  //     var htmlString = "";
+  //
+  //     for (var i = 0; i < resultsArray.photos.photo.length; i++) {
+  //         var titleText = resultsArray.photos.photo[i].title.substring(0,133);
+  //         htmlString += "<div class='photo-container'> <div class='photo'> <img id='outer" + i + "' src = https://farm" + resultsArray.photos.photo[i].farm + ".staticflickr.com/" + resultsArray.photos.photo[i].server + "/" + resultsArray.photos.photo[i].id + "_" + resultsArray.photos.photo[i].secret +".jpg> <div id='" + i + "' class='title_overlay'> <p>" + titleText + "</p> </div> </div> </div>"
+  //     }
+  //
+  //     document.getElementById("results").innerHTML = htmlString;
+  //
+  //      for (var j = 0; j < resultsArray.photos.photo.length; j++) {
+  //         // document.getElementById(j).addEventListener("click", makeAJAX2Request);
+  //         document.getElementById(j).addEventListener("click", toggleOverlayOff);
+  //         document.getElementById("outer"+j).addEventListener("click", toggleOverlayOn);
+  //     }
+  // }
 });
 
 app.listen(app.get('port'), function() {
