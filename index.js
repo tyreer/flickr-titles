@@ -1,3 +1,8 @@
+'use strict';
+
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
+
 var express = require('express');
 var app = express();
 var url = require('url');
@@ -15,41 +20,29 @@ app.get('/', function(request, response) {
 });
 
 app.get('/*', function(request, response) {
-  const test = ({
-      protocol: request.protocol,
-      path: request.path
-  });
+  const queryFromURL = request.path.substring(1);
 
-  response.render('pages/index2', {Check: test.path })
-  // function makeAJAXRequest () {
-  //
-  //     var request = new XMLHttpRequest();
-  //     var url = "//api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+APIKEY+"&format=json&nojsoncallback=?&text=";
-  //
-  //     request.addEventListener("load", writeResponse);
-  //
-  //     request.open("GET", url + document.getElementById("query").value);
-  //     request.send();
-  // }
-  //
-  // function writeResponse() {
-  //     resultsArray = JSON.parse(this.responseText);
-  //     var htmlString = "";
-  //
-  //     for (var i = 0; i < resultsArray.photos.photo.length; i++) {
-  //         var titleText = resultsArray.photos.photo[i].title.substring(0,133);
-  //         htmlString += "<div class='photo-container'> <div class='photo'> <img id='outer" + i + "' src = https://farm" + resultsArray.photos.photo[i].farm + ".staticflickr.com/" + resultsArray.photos.photo[i].server + "/" + resultsArray.photos.photo[i].id + "_" + resultsArray.photos.photo[i].secret +".jpg> <div id='" + i + "' class='title_overlay'> <p>" + titleText + "</p> </div> </div> </div>"
-  //     }
-  //
-  //     document.getElementById("results").innerHTML = htmlString;
-  //
-  //      for (var j = 0; j < resultsArray.photos.photo.length; j++) {
-  //         // document.getElementById(j).addEventListener("click", makeAJAX2Request);
-  //         document.getElementById(j).addEventListener("click", toggleOverlayOff);
-  //         document.getElementById("outer"+j).addEventListener("click", toggleOverlayOn);
-  //     }
-  // }
+  let allFetchPromises = [];
+
+  const resultsArray = fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.APIKEY}&format=json&nojsoncallback=?&text=${queryFromURL}`)
+    .then( response => {
+      return response.json();
+    })
+
+  allFetchPromises.push(resultsArray);
+
+  Promise.all(allFetchPromises).then(data => {
+    response.render('pages/index2', { Check: queryFromURL, data: data })
+  });
 });
+
+// Need to add this 👇🏻
+    //  for (let j = 0; j < resultsArray.photos.photo.length; j++) {
+    //     // document.getElementById(j).addEventListener("click", makeAJAX2Request);
+    //     document.getElementById(j).addEventListener("click", toggleOverlayOff);
+    //     document.getElementById("outer"+j).addEventListener("click", toggleOverlayOn);
+    // }
+
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
