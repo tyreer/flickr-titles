@@ -69,6 +69,10 @@ h2 {
     line-height: 47px;
 }
 
+.top-jump {
+  display: none;
+}
+
 
 /* Layout containers -------------------- */
 
