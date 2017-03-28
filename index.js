@@ -36,14 +36,6 @@ app.get('/*', function(request, response) {
   });
 });
 
-// Need to add this 👇🏻
-    //  for (let j = 0; j < resultsArray.photos.photo.length; j++) {
-    //     // document.getElementById(j).addEventListener("click", makeAJAX2Request);
-    //     document.getElementById(j).addEventListener("click", toggleOverlayOff);
-    //     document.getElementById("outer"+j).addEventListener("click", toggleOverlayOn);
-    // }
-
-
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });

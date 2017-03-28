@@ -9,23 +9,21 @@
       <header id="header" class = "header">
         <div class = "main-title-text">
           <h1><%= Check %></h1>
-          <input type="text" id="query" value="">
-          <button id="getdata">Search</button>
           <h2>100 most recently uploaded photos<br>File titles overlaid</h2>
         </div>
       </header>
-       <a id="top" class="top-jump" href=#header>
+       <a id="top" class="top-jump" href='/'>
           <div>
-            <h2>top</h2>
+            <h2>again</h2>
           </div>
         </a>
       <div id="results">
         <% for (let i = 0; i < data[0].photos.photo.length; i++) {
             let titleText = data[0].photos.photo[i].title.substring(0,133);
-            %><div class='photo-container'> <div class='photo'> <img id='outer" + i + "' src = https://farm<%= data[0].photos.photo[i].farm %>.staticflickr.com/<%= data[0].photos.photo[i].server %>/<%=data[0].photos.photo[i].id%>_<%=data[0].photos.photo[i].secret%>.jpg> <div id='<%= i %>' class='title_overlay'> <p><%= titleText %></p> </div> </div> </div>
+            %><div class='photo-container'> <div class='photo'> <img id='outer<%= i %>' src = https://farm<%= data[0].photos.photo[i].farm %>.staticflickr.com/<%= data[0].photos.photo[i].server %>/<%=data[0].photos.photo[i].id %>_<%= data[0].photos.photo[i].secret %>.jpg> <div id='<%= i %>' class='title_overlay'> <p><%= titleText %></p> </div> </div> </div>
         <% } %>
       </div>
     </div>
-    <script src="/flickrApp.js" type="text/javascript"></script>
+    <script src="/flickrApp2.js" type="text/javascript"></script>
   </body>
 </html>

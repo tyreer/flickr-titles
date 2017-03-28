@@ -69,10 +69,6 @@ h2 {
     line-height: 47px;
 }
 
-.top-jump {
-  display: none;
-}
-
 
 /* Layout containers -------------------- */
 
@@ -141,16 +137,16 @@ img {
   .photo-container {
     width: 50vw;
   }
-  
+
   .title_overlay {
     width: 50vw;
   }
-  
+
   .title_overlay p {
     line-height: 60px;
   }
-  
-  .top-jump-show {
+
+  .top-jump {
     display: flex;
     position: fixed;
     bottom: 30px;
@@ -158,7 +154,7 @@ img {
     text-decoration: none;
     color:red;
   }
-  
+
   .top-jump h2 {
     margin: 0;
   }
