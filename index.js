@@ -32,7 +32,11 @@ app.get('/*', function(request, response) {
   allFetchPromises.push(resultsArray);
 
   Promise.all(allFetchPromises).then(data => {
-    response.render('pages/index2', { Check: queryFromURL, data: data })
+    let returnQuery = queryFromURL;
+    while(returnQuery.indexOf('%') > -1) {
+        returnQuery = returnQuery.substr(0, returnQuery.indexOf('%')).concat(' ', returnQuery.substr(returnQuery.indexOf('%')+3));
+      }
+    response.render('pages/index2', { Check: returnQuery, data: data })
   });
 });
 
